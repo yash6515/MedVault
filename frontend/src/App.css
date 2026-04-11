@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800;900&display=swap');
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-surface-900 bg-surface-50;
+  }
+  ::selection {
+    @apply bg-brand-200/60 text-brand-900;
+  }
+}
+
+@layer components {
+  /* ── Inputs ─────────────────────────────── */
+  .input {
+    @apply w-full rounded-xl border border-surface-300 bg-white px-4 py-3 text-sm
+           text-surface-900 placeholder-surface-400 transition-all duration-200
+           focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/10;
+  }
+  .input-error {
+    @apply border-danger-400 focus:border-danger-500 focus:ring-danger-500/10;
+  }
+  .label {
+    @apply block text-[13px] font-medium text-surface-600 mb-1.5;
+  }
+
+  /* ── Buttons ────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5
+           text-sm font-semibold text-white shadow-xs transition-all duration-200
+           hover:bg-brand-700 hover:shadow-soft active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-surface-900 px-5 py-2.5
+           text-sm font-semibold text-white shadow-xs transition-all duration-200
+           hover:bg-surface-800 active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5
+           text-sm font-semibold text-surface-700 transition-all duration-200
+           hover:bg-surface-100 active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-surface-200 px-5 py-2.5
+           text-sm font-semibold text-surface-700 bg-white transition-all duration-200
+           hover:border-surface-300 hover:bg-surface-50 active:scale-[0.98];
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-danger-500 px-5 py-2.5
+           text-sm font-semibold text-white shadow-xs transition-all duration-200
+           hover:bg-danger-600 active:scale-[0.98];
+  }
+  .btn-teal {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-5 py-2.5
+           text-sm font-semibold text-white shadow-xs transition-all duration-200
+           hover:bg-teal-700 active:scale-[0.98];
+  }
+  .btn-lg {
+    @apply px-7 py-3.5 text-[15px];
+  }
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-xs rounded-lg;
+  }
+  .btn-icon {
+    @apply inline-flex items-center justify-center rounded-xl w-10 h-10
+           text-surface-500 transition-all duration-200 hover:bg-surface-100;
+  }
+
+  /* ── Cards ──────────────────────────────── */
+  .card {
+    @apply bg-white rounded-2xl border border-surface-200/60 shadow-card;
+  }
+  .card-hover {
+    @apply card transition-all duration-300 hover:shadow-float hover:-translate-y-0.5;
+  }
+  .card-flat {
+    @apply bg-surface-50 rounded-2xl border border-surface-200/40;
+  }
+  .card-glass {
+    @apply backdrop-blur-xl bg-white/70 rounded-2xl border border-white/40 shadow-float;
+  }
+
+  /* ── Badges ─────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider;
+  }
+  .badge-danger {
+    @apply badge bg-danger-100 text-danger-600;
+  }
+  .badge-warning {
+    @apply badge bg-amber-100 text-amber-700;
+  }
+  .badge-success {
+    @apply badge bg-emerald-100 text-emerald-700;
+  }
+  .badge-info {
+    @apply badge bg-brand-100 text-brand-700;
+  }
+  .badge-teal {
+    @apply badge bg-teal-100 text-teal-700;
+  }
+
+  /* ── Skeleton loaders ───────────────────── */
+  .skeleton {
+    @apply bg-surface-200 rounded-lg animate-pulse;
+  }
+
+  /* ── Section divider ────────────────────── */
+  .divider {
+    @apply border-t border-surface-200/60;
+  }
+}
+
+/* ── QR Scanner overrides ─────────────────── */
+#qr-reader {
+  border: none !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+#qr-reader video {
+  border-radius: 12px !important;
+}
+
+/* ── Custom scrollbar ─────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* ── Toast overrides ──────────────────────── */
+.Toastify__toast {
+  border-radius: 12px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+}
