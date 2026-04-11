@@ -103,7 +103,7 @@ const MedicalProfileForm = () => {
   );
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-surface-50 py-8">
+    <div className="min-h-[calc(100vh-64px)] py-8">
       <div className="max-w-2xl mx-auto px-4">
         {/* Progress Bar */}
         <FadeInUp>

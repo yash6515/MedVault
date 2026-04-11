@@ -41,7 +41,7 @@ const PatientSummary = ({ patient, healthId, onBack }) => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-surface-50 py-8">
+    <div className="min-h-[calc(100vh-64px)] py-8">
       <div className="max-w-4xl mx-auto px-4">
         <FadeIn>
           <button onClick={onBack} className="btn-ghost btn-sm mb-4">

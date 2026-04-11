@@ -18,7 +18,7 @@ const Navbar = () => {
   const NavLink = ({ to, children }) => (
     <Link
       to={to}
-      className={`relative px-3 py-1.5 text-[13px] font-medium rounded-lg transition-all duration-200 ${
+      className={`relative px-3.5 py-2 text-[13px] font-medium rounded-xl transition-all duration-200 ${
         isActive(to)
           ? 'text-brand-700 bg-brand-50'
           : 'text-surface-600 hover:text-surface-900 hover:bg-surface-100'
@@ -55,10 +55,7 @@ const Navbar = () => {
                 <NavLink to="/patient/register">Create Health ID</NavLink>
                 <NavLink to="/doctor/login">For Doctors</NavLink>
                 <div className="w-px h-5 bg-surface-200 mx-2" />
-                <Link
-                  to="/patient/login"
-                  className="btn-primary btn-sm"
-                >
+                <Link to="/patient/login" className="btn-primary btn-sm">
                   Sign In
                 </Link>
               </>

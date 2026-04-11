@@ -41,7 +41,7 @@ const QRPage = () => {
   if (loading) return <div className="max-w-md mx-auto px-4 py-12"><ProfileSkeleton /></div>;
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-surface-50 to-brand-50/20 flex items-center justify-center px-4 py-12">
+    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12">
       <FadeInUp>
         <div className="w-full max-w-sm">
           <div className="card p-8 text-center">

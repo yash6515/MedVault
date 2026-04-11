@@ -29,6 +29,6 @@ export const addVisit = (data) => API.post('/doctors/add-visit', data);
 export const exportRecords = (patientId) => API.get(`/records/export/${patientId}`);
 
 // AI
-export const getAIPredictions = () => API.post('/ai/predict');
+export const getAIPredictions = (forceRefresh = false) => API.post('/ai/predict', { forceRefresh });
 
 export default API;
