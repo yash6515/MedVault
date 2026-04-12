@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         brand: {
@@ -45,19 +46,6 @@ module.exports = {
           800: '#a8351b',
           900: '#8a311d',
         },
-        ocean: {
-          50:  '#f0f7ff',
-          100: '#e0effe',
-          200: '#b9dfff',
-          300: '#7cc5fe',
-          400: '#36a8fc',
-          500: '#0c8ded',
-          600: '#006fcb',
-          700: '#0059a5',
-          800: '#054b87',
-          900: '#0a3f70',
-          950: '#07284b',
-        },
         danger: {
           50:  '#fef2f2',
           100: '#fee2e2',
@@ -86,20 +74,25 @@ module.exports = {
         },
       },
       boxShadow: {
-        'xs':    '0 1px 2px 0 rgba(15,23,42,0.03)',
-        'soft':  '0 2px 8px -2px rgba(15,23,42,0.06), 0 4px 16px -4px rgba(15,23,42,0.06)',
-        'card':  '0 1px 3px 0 rgba(15,23,42,0.04), 0 6px 24px -4px rgba(15,23,42,0.06)',
-        'float': '0 8px 32px -8px rgba(15,23,42,0.1), 0 2px 8px -2px rgba(15,23,42,0.04)',
-        'glow':  '0 0 0 3px rgba(59,130,246,0.15)',
-        'glow-teal': '0 0 0 3px rgba(20,184,166,0.15)',
-        'glow-coral': '0 0 0 3px rgba(255,107,71,0.15)',
-        'glow-danger': '0 0 0 3px rgba(239,68,68,0.12)',
-        'elevated': '0 12px 48px -12px rgba(15,23,42,0.12), 0 4px 16px -4px rgba(15,23,42,0.06)',
-        'ocean': '0 4px 24px -4px rgba(12,141,237,0.2)',
+        'xs':    '0 1px 2px 0 rgba(0,0,0,0.03)',
+        'soft':  '0 2px 8px -2px rgba(0,0,0,0.05), 0 4px 16px -4px rgba(0,0,0,0.05)',
+        'card':  '0 1px 3px 0 rgba(0,0,0,0.04), 0 8px 28px -6px rgba(0,0,0,0.06)',
+        'float': '0 12px 40px -12px rgba(0,0,0,0.12), 0 4px 16px -4px rgba(0,0,0,0.05)',
+        'elevated': '0 20px 60px -15px rgba(0,0,0,0.15), 0 8px 24px -8px rgba(0,0,0,0.06)',
+        'glow':  '0 0 0 3px rgba(59,130,246,0.12)',
+        'glow-teal': '0 0 0 3px rgba(20,184,166,0.12)',
+        'glow-danger': '0 0 0 3px rgba(239,68,68,0.10)',
+        'inner-soft': 'inset 0 2px 4px 0 rgba(0,0,0,0.03)',
+        'glass': '0 8px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.1)',
+        'premium': '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03), 0 16px 40px -8px rgba(0,0,0,0.06)',
       },
       borderRadius: {
         '2xl': '16px',
         '3xl': '24px',
+        '4xl': '32px',
+      },
+      backdropBlur: {
+        'xs': '2px',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
@@ -108,6 +101,8 @@ module.exports = {
         'scale-in': 'scaleIn 0.3s ease-out',
         'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
+        'shimmer': 'shimmer 2s ease-in-out infinite',
+        'glow-pulse': 'glowPulse 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -133,6 +128,14 @@ module.exports = {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(59,130,246,0.1)' },
+          '50%': { boxShadow: '0 0 0 8px rgba(59,130,246,0)' },
         },
       },
     },

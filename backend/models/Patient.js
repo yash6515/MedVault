@@ -11,6 +11,7 @@ const patientSchema = new mongoose.Schema({
   gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
   address: { type: String },
   qrCode: { type: String },
+  profilePicture: { type: String }, // base64 encoded
 
   // Medical Profile
   bloodGroup: { type: String, enum: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', ''] },

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm ls:*)",
+      "Bash(xargs wc:*)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //PID 31080 //F)",
+      "Bash(taskkill /PID 31080 /F)",
+      "Bash(cmd.exe /c \"taskkill /PID 31080 /F\")",
+      "Bash(cmd.exe /c \"taskkill /F /PID 31080\")"
+    ]
+  }
+}

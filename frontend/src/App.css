@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800;900&display=swap');
 
 @layer base {
   html {
@@ -18,14 +18,14 @@
       radial-gradient(ellipse 50% 50% at 60% 50%, rgba(255,107,71,0.02), transparent);
   }
   ::selection {
-    @apply bg-ocean-200/60 text-ocean-900;
+    @apply bg-brand-200/60 text-brand-900;
   }
 }
 
 @layer components {
   /* ── Inputs ─────────────────────────────── */
   .input {
-    @apply w-full rounded-xl border border-surface-300 bg-white px-4 py-3 text-sm
+    @apply w-full rounded-xl border border-surface-300 bg-white px-3.5 py-2.5 text-[13px]
            text-surface-900 placeholder-surface-400 transition-all duration-200
            focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/10;
   }
@@ -121,6 +121,61 @@
   /* ── Section divider ────────────────────── */
   .divider {
     @apply border-t border-surface-200/60;
+  }
+
+  /* ── Premium Effects ────────────────────── */
+  .glass-panel {
+    @apply backdrop-blur-xl bg-white/70 border border-white/60 shadow-glass;
+  }
+  
+  .glass-panel-dark {
+    @apply backdrop-blur-xl bg-surface-900/80 border border-white/10 shadow-elevated;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-teal-600 to-emerald-600 font-bold;
+  }
+
+  .mesh-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mesh-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(20, 184, 166, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+    animation: meshFlow 20s ease-in-out infinite alternate;
+    z-index: -1;
+  }
+
+  @keyframes meshFlow {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-5%, -5%) rotate(5deg); }
+  }
+
+  .card-premium-glow {
+    @apply relative overflow-hidden bg-white border border-surface-200/60 shadow-premium transition-all duration-300;
+  }
+
+  .card-premium-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x, 0%) var(--mouse-y, 0%), rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+
+  .card-premium-glow:hover::after {
+    opacity: 1;
   }
 }
 

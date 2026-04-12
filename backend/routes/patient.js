@@ -14,6 +14,16 @@ router.post('/register', async (req, res) => {
   try {
     const { fullName, email, phone, password, pin, dateOfBirth, gender, address } = req.body;
 
+    // Validate phone: exactly 10 digits
+    if (!phone || !/^\d{10}$/.test(phone)) {
+      return res.status(400).json({ message: 'Phone number must be exactly 10 digits' });
+    }
+
+    // Validate PIN: exactly 4 digits
+    if (!pin || !/^\d{4}$/.test(pin)) {
+      return res.status(400).json({ message: 'PIN must be exactly 4 digits' });
+    }
+
     const existing = await Patient.findOne({ email });
     if (existing) return res.status(400).json({ message: 'Email already registered' });
 
@@ -156,6 +166,35 @@ router.get('/visits', authMiddleware, async (req, res) => {
   }
 });
 
+// Upload profile picture
+router.put('/profile-picture', authMiddleware, async (req, res) => {
+  try {
+    const { profilePicture } = req.body;
+    if (!profilePicture) return res.status(400).json({ message: 'No image provided' });
+
+    // Validate base64 image format
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    const match = profilePicture.match(/^data:(image\/(jpeg|png|jpg));base64,/);
+    if (!match) return res.status(400).json({ message: 'Invalid image format. Only JPG, PNG allowed.' });
+
+    // Check size (max 5MB base64)
+    const sizeInBytes = (profilePicture.length * 3) / 4;
+    if (sizeInBytes > 5 * 1024 * 1024) {
+      return res.status(400).json({ message: 'Image too large. Max 5MB.' });
+    }
+
+    const patient = await Patient.findByIdAndUpdate(
+      req.user.id,
+      { profilePicture },
+      { new: true }
+    ).select('-password -pin');
+
+    res.json({ message: 'Profile picture updated', profilePicture: patient.profilePicture });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // Change PIN
 router.put('/change-pin', authMiddleware, async (req, res) => {
   try {
@@ -167,6 +206,33 @@ router.put('/change-pin', authMiddleware, async (req, res) => {
     patient.pin = await bcrypt.hash(newPin, 10);
     await patient.save();
     res.json({ message: 'PIN changed successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
+// Patient self-report visit
+router.post('/self-visit', authMiddleware, async (req, res) => {
+  try {
+    const { doctorName, hospitalName, diagnosis, prescriptions, notes, followUpDate } = req.body;
+
+    if (!diagnosis || !diagnosis.trim()) {
+      return res.status(400).json({ message: 'Diagnosis is required' });
+    }
+
+    const visit = new Visit({
+      patientId: req.user.id,
+      doctorName: doctorName || 'Self-reported',
+      hospitalName: hospitalName || '',
+      diagnosis,
+      prescriptions: (prescriptions || []).filter(p => p.medicine),
+      notes,
+      followUpDate: followUpDate || undefined,
+      selfReported: true,
+    });
+
+    await visit.save();
+    res.json({ message: 'Visit recorded successfully', visit });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
