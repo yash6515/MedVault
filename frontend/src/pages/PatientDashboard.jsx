@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { getPatientProfile, getVisits, addSelfVisit, parseDocument, extractMedicalData } from '../services/api';
+import { getPatientProfile, getVisits, addSelfVisit, parseDocument, extractMedicalData, updateWeight } from '../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiUser, FiCalendar, FiActivity, FiMapPin,
   FiFileText, FiChevronRight, FiMaximize2,
   FiDownload, FiDroplet, FiAlertTriangle, FiHeart,
   FiEdit3, FiPhone, FiCpu, FiArrowUpRight, FiMail,
-  FiPlus, FiX, FiCheck, FiLoader, FiUploadCloud, FiZap
+  FiPlus, FiX, FiCheck, FiLoader, FiUploadCloud, FiZap, FiTrendingUp
 } from 'react-icons/fi';
 import { FadeInUp, StaggerContainer, StaggerItem, AnimCount } from '../components/ui/Motion';
 
@@ -332,6 +332,15 @@ const PatientDashboard = () => {
                     </div>
                   </FadeInUp>
 
+                  {/* Weight Tracker */}
+                  <FadeInUp delay={0.22}>
+                    <WeightTracker
+                      currentWeight={profile.currentWeight}
+                      weightHistory={profile.weightHistory}
+                      onWeightUpdated={(w, h) => setProfile(prev => ({ ...prev, currentWeight: w, weightHistory: h }))}
+                    />
+                  </FadeInUp>
+
                   {/* AI Preview Card */}
                   {profile.aiPredictions?.riskScores?.length > 0 && (
                     <FadeInUp delay={0.25}>
@@ -534,6 +543,142 @@ const PatientDashboard = () => {
           )}
         </AnimatePresence>
       </div>
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════
+   ADD VISIT MODAL — Manual + AI modes
+   ══════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   WEIGHT TRACKER WIDGET
+   ══════════════════════════════════════════════ */
+const WeightTracker = ({ currentWeight, weightHistory = [], onWeightUpdated }) => {
+  const [editing, setEditing] = useState(false);
+  const [newWeight, setNewWeight] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    const w = Number(newWeight);
+    if (!w || w <= 0 || w > 500) return;
+    setSaving(true);
+    try {
+      const res = await updateWeight({ weight: w });
+      onWeightUpdated(res.data.currentWeight, res.data.weightHistory);
+      setEditing(false);
+      setNewWeight('');
+    } catch (err) {
+      console.error('Failed to update weight', err);
+    }
+    setSaving(false);
+  };
+
+  // Build chart data (last 10 entries)
+  const chartData = (weightHistory || []).slice(-10);
+  const weights = chartData.map(e => e.weight);
+  const minW = weights.length ? Math.min(...weights) - 2 : 0;
+  const maxW = weights.length ? Math.max(...weights) + 2 : 100;
+  const range = maxW - minW || 1;
+
+  // Build SVG path
+  const chartWidth = 220;
+  const chartHeight = 60;
+  const points = chartData.map((e, i) => {
+    const x = chartData.length > 1 ? (i / (chartData.length - 1)) * chartWidth : chartWidth / 2;
+    const y = chartHeight - ((e.weight - minW) / range) * chartHeight;
+    return { x, y };
+  });
+  const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  const areaD = pathD + ` L ${chartWidth} ${chartHeight} L 0 ${chartHeight} Z`;
+
+  // Weight change
+  const lastTwo = weights.slice(-2);
+  const change = lastTwo.length === 2 ? (lastTwo[1] - lastTwo[0]).toFixed(1) : null;
+
+  return (
+    <div className="bg-white rounded-2xl border border-surface-200/50 p-5 shadow-card">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md">
+            <FiTrendingUp className="w-4 h-4 text-white" />
+          </div>
+          <h3 className="text-xs font-bold text-surface-950 uppercase tracking-wider">Weight</h3>
+        </div>
+        <button
+          onClick={() => { setEditing(!editing); setNewWeight(currentWeight || ''); }}
+          className="text-[10px] font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+        >
+          {editing ? 'Cancel' : 'Update'}
+        </button>
+      </div>
+
+      {/* Current Weight Display */}
+      <div className="flex items-baseline gap-1.5 mb-3">
+        <span className="text-2xl font-bold text-surface-950">{currentWeight || '—'}</span>
+        <span className="text-xs text-surface-400 font-medium">kg</span>
+        {change !== null && (
+          <span className={`ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+            Number(change) > 0 ? 'bg-amber-50 text-amber-600' : Number(change) < 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-surface-50 text-surface-400'
+          }`}>
+            {Number(change) > 0 ? '+' : ''}{change} kg
+          </span>
+        )}
+      </div>
+
+      {/* Edit Form */}
+      {editing && (
+        <div className="flex gap-2 mb-3">
+          <input
+            type="number"
+            className="input flex-1 text-xs"
+            placeholder="Enter weight in kg"
+            value={newWeight}
+            min="1"
+            max="500"
+            onChange={e => setNewWeight(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && handleSave()}
+            autoFocus
+          />
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-3 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors disabled:opacity-50"
+          >
+            {saving ? <FiLoader className="w-3.5 h-3.5 animate-spin" /> : <FiCheck className="w-3.5 h-3.5" />}
+          </button>
+        </div>
+      )}
+
+      {/* Mini Chart */}
+      {chartData.length >= 2 && (
+        <div className="mt-2">
+          <svg width={chartWidth} height={chartHeight} className="w-full" viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="weightGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d={areaD} fill="url(#weightGrad)" />
+            <path d={pathD} fill="none" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            {points.map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#8b5cf6" stroke="white" strokeWidth="1.5" />
+            ))}
+          </svg>
+          <div className="flex justify-between mt-1">
+            <span className="text-[9px] text-surface-400">
+              {new Date(chartData[0].date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+            </span>
+            <span className="text-[9px] text-surface-400">
+              {new Date(chartData[chartData.length - 1].date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {chartData.length < 2 && (
+        <p className="text-[10px] text-surface-400 mt-1">Update your weight regularly to see trends</p>
+      )}
     </div>
   );
 };

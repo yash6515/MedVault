@@ -43,6 +43,13 @@ const patientSchema = new mongoose.Schema({
   exerciseFrequency: { type: String, enum: ['none', 'light', 'moderate', 'daily'], default: 'none' },
   dietType: { type: String, enum: ['veg', 'non-veg', 'vegan', 'other'], default: 'non-veg' },
 
+  // Weight tracking
+  currentWeight: { type: Number },
+  weightHistory: [{
+    weight: Number,
+    date: { type: Date, default: Date.now }
+  }],
+
   // Emergency Contacts
   emergencyContacts: [{
     name: String,

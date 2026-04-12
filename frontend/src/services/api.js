@@ -20,6 +20,7 @@ export const getAccessLogs = () => API.get('/patients/access-logs');
 export const getVisits = () => API.get('/patients/visits');
 export const changePin = (data) => API.put('/patients/change-pin', data);
 export const addSelfVisit = (data) => API.post('/patients/self-visit', data);
+export const updateWeight = (data) => API.put('/patients/weight', data);
 export const uploadProfilePicture = (data) => API.put('/patients/profile-picture', data);
 export const extractMedicalData = (data) => API.post('/ai/extract-medical', data);
 export const parseDocument = (data) => API.post('/ai/parse-document', data);

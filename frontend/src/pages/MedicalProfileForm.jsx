@@ -109,6 +109,7 @@ const MedicalProfileForm = () => {
     chronicConditions: [{ name: '', status: 'controlled' }],
     pastSurgeries: [{ name: '', year: '' }],
     familyHistory: [{ relation: '', condition: '' }],
+    currentWeight: '',
     smoker: false,
     alcoholUse: 'none',
     exerciseFrequency: 'none',
@@ -129,6 +130,7 @@ const MedicalProfileForm = () => {
           chronicConditions: data.chronicConditions?.length ? data.chronicConditions : prev.chronicConditions,
           pastSurgeries: data.pastSurgeries?.length ? data.pastSurgeries : prev.pastSurgeries,
           familyHistory: data.familyHistory?.length ? data.familyHistory : prev.familyHistory,
+          currentWeight: data.currentWeight || '',
           smoker: data.smoker || false,
           alcoholUse: data.alcoholUse || 'none',
           exerciseFrequency: data.exerciseFrequency || 'none',
@@ -773,52 +775,128 @@ const MedicalProfileForm = () => {
                 <div>
                   <SectionHeader icon={FiSun} title="Lifestyle" subtitle="Habits and lifestyle information" gradient="from-emerald-500 to-teal-600" />
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-6">
+                    {/* Weight Input */}
+                    <InputField label="Current Weight (kg)">
+                      <div className="flex gap-2 items-center">
+                        <input
+                          type="number"
+                          className="input w-40"
+                          placeholder="e.g., 68"
+                          value={form.currentWeight || ''}
+                          min="1"
+                          max="500"
+                          onChange={e => setForm(prev => ({ ...prev, currentWeight: e.target.value ? Number(e.target.value) : '' }))}
+                        />
+                        <span className="text-xs text-surface-400 font-medium">kg</span>
+                      </div>
+                    </InputField>
+
+                    {/* Smoker */}
                     <InputField label="Smoker">
-                      <div className="flex gap-2">
-                        {[{ val: false, label: 'No', icon: '🚭' }, { val: true, label: 'Yes', icon: '🚬' }].map(opt => (
-                          <motion.button
+                      <div className="grid grid-cols-2 gap-2">
+                        {[{ val: false, label: 'No', icon: '🚭', activeBg: 'bg-emerald-50 border-emerald-300 text-emerald-700' },
+                          { val: true, label: 'Yes', icon: '🚬', activeBg: 'bg-amber-50 border-amber-300 text-amber-700' }].map(opt => (
+                          <button
                             key={String(opt.val)}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                            type="button"
                             onClick={() => setForm(prev => ({ ...prev, smoker: opt.val }))}
-                            className={`flex-1 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
+                            className={`py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-2 border-2 ${
                               form.smoker === opt.val
-                                ? opt.val ? 'bg-amber-50 border-2 border-amber-300 text-amber-700 shadow-sm' : 'bg-emerald-50 border-2 border-emerald-300 text-emerald-700 shadow-sm'
-                                : 'bg-surface-50 border-2 border-surface-200/60 text-surface-500 hover:border-surface-300'
+                                ? opt.activeBg + ' shadow-sm'
+                                : 'bg-surface-50 border-surface-200/60 text-surface-500 hover:border-surface-300'
                             }`}
                           >
                             <span>{opt.icon}</span> {opt.label}
-                          </motion.button>
+                          </button>
                         ))}
                       </div>
                     </InputField>
 
+                    {/* Alcohol Use */}
                     <InputField label="Alcohol Use">
-                      <select className="input" value={form.alcoholUse} onChange={e => setForm(prev => ({ ...prev, alcoholUse: e.target.value }))}>
-                        <option value="none">None</option>
-                        <option value="occasional">Occasional</option>
-                        <option value="moderate">Moderate</option>
-                        <option value="heavy">Heavy</option>
-                      </select>
+                      <div className="grid grid-cols-4 gap-2">
+                        {[
+                          { val: 'none', label: 'None', icon: '🚫' },
+                          { val: 'occasional', label: 'Occasional', icon: '🍷' },
+                          { val: 'moderate', label: 'Moderate', icon: '🍺' },
+                          { val: 'heavy', label: 'Heavy', icon: '🥃' },
+                        ].map(opt => (
+                          <button
+                            key={opt.val}
+                            type="button"
+                            onClick={() => setForm(prev => ({ ...prev, alcoholUse: opt.val }))}
+                            className={`py-2.5 rounded-xl text-[11px] font-semibold transition-all duration-200 flex flex-col items-center justify-center gap-1 border-2 ${
+                              form.alcoholUse === opt.val
+                                ? opt.val === 'none'
+                                  ? 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-sm'
+                                  : opt.val === 'heavy'
+                                  ? 'bg-red-50 border-red-300 text-red-700 shadow-sm'
+                                  : 'bg-amber-50 border-amber-300 text-amber-700 shadow-sm'
+                                : 'bg-surface-50 border-surface-200/60 text-surface-500 hover:border-surface-300'
+                            }`}
+                          >
+                            <span className="text-base">{opt.icon}</span>
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
                     </InputField>
 
+                    {/* Exercise Frequency */}
                     <InputField label="Exercise Frequency">
-                      <select className="input" value={form.exerciseFrequency} onChange={e => setForm(prev => ({ ...prev, exerciseFrequency: e.target.value }))}>
-                        <option value="none">None / Sedentary</option>
-                        <option value="light">Light (1-2x/week)</option>
-                        <option value="moderate">Moderate (3-4x/week)</option>
-                        <option value="daily">Daily</option>
-                      </select>
+                      <div className="grid grid-cols-4 gap-2">
+                        {[
+                          { val: 'none', label: 'None', icon: '🛋️' },
+                          { val: 'light', label: '1-2x/wk', icon: '🚶' },
+                          { val: 'moderate', label: '3-4x/wk', icon: '🏃' },
+                          { val: 'daily', label: 'Daily', icon: '💪' },
+                        ].map(opt => (
+                          <button
+                            key={opt.val}
+                            type="button"
+                            onClick={() => setForm(prev => ({ ...prev, exerciseFrequency: opt.val }))}
+                            className={`py-2.5 rounded-xl text-[11px] font-semibold transition-all duration-200 flex flex-col items-center justify-center gap-1 border-2 ${
+                              form.exerciseFrequency === opt.val
+                                ? opt.val === 'daily'
+                                  ? 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-sm'
+                                  : opt.val === 'none'
+                                  ? 'bg-red-50 border-red-300 text-red-700 shadow-sm'
+                                  : 'bg-blue-50 border-blue-300 text-blue-700 shadow-sm'
+                                : 'bg-surface-50 border-surface-200/60 text-surface-500 hover:border-surface-300'
+                            }`}
+                          >
+                            <span className="text-base">{opt.icon}</span>
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
                     </InputField>
 
+                    {/* Diet Type */}
                     <InputField label="Diet Type">
-                      <select className="input" value={form.dietType} onChange={e => setForm(prev => ({ ...prev, dietType: e.target.value }))}>
-                        <option value="veg">Vegetarian</option>
-                        <option value="non-veg">Non-Vegetarian</option>
-                        <option value="vegan">Vegan</option>
-                        <option value="other">Other</option>
-                      </select>
+                      <div className="grid grid-cols-4 gap-2">
+                        {[
+                          { val: 'veg', label: 'Vegetarian', icon: '🥗' },
+                          { val: 'non-veg', label: 'Non-Veg', icon: '🍗' },
+                          { val: 'vegan', label: 'Vegan', icon: '🌱' },
+                          { val: 'other', label: 'Other', icon: '🍽️' },
+                        ].map(opt => (
+                          <button
+                            key={opt.val}
+                            type="button"
+                            onClick={() => setForm(prev => ({ ...prev, dietType: opt.val }))}
+                            className={`py-2.5 rounded-xl text-[11px] font-semibold transition-all duration-200 flex flex-col items-center justify-center gap-1 border-2 ${
+                              form.dietType === opt.val
+                                ? 'bg-teal-50 border-teal-300 text-teal-700 shadow-sm'
+                                : 'bg-surface-50 border-surface-200/60 text-surface-500 hover:border-surface-300'
+                            }`}
+                          >
+                            <span className="text-base">{opt.icon}</span>
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
                     </InputField>
                   </div>
                 </div>

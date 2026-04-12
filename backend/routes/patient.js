@@ -211,6 +211,31 @@ router.put('/change-pin', authMiddleware, async (req, res) => {
   }
 });
 
+// Update weight
+router.put('/weight', authMiddleware, async (req, res) => {
+  try {
+    const { weight } = req.body;
+    if (!weight || weight <= 0 || weight > 500) {
+      return res.status(400).json({ message: 'Please enter a valid weight (1-500 kg)' });
+    }
+
+    const patient = await Patient.findById(req.user.id);
+    if (!patient) return res.status(404).json({ message: 'Patient not found' });
+
+    patient.currentWeight = weight;
+    patient.weightHistory.push({ weight, date: new Date() });
+    await patient.save();
+
+    res.json({
+      message: 'Weight updated',
+      currentWeight: patient.currentWeight,
+      weightHistory: patient.weightHistory
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // Patient self-report visit
 router.post('/self-visit', authMiddleware, async (req, res) => {
   try {
