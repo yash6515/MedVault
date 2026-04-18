@@ -47,7 +47,7 @@ const QRPage = () => {
           <div className="card p-8 text-center">
             {/* QR Display */}
             <div className="mb-6">
-              <div className="inline-block p-4 rounded-2xl bg-white border-2 border-brand-100 shadow-soft">
+              <div className="inline-block p-4 rounded-2xl bg-surface-0 border-2 border-brand-100 shadow-soft">
                 {profile?.qrCode && (
                   <img src={profile.qrCode} alt="Health QR Code" className="w-48 h-48" />
                 )}

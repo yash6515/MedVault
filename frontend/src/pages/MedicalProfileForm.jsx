@@ -356,7 +356,7 @@ const MedicalProfileForm = () => {
 
         {/* ══ STEPPER ═══════════════════════════ */}
         <FadeInUp>
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-card p-5 sm:p-7 mb-6 overflow-hidden relative">
+          <div className="bg-surface-0/80 backdrop-blur-xl rounded-3xl border border-surface-200/60 dark:border-surface-200/40 shadow-card p-5 sm:p-7 mb-6 overflow-hidden relative">
             {/* Top gradient accent */}
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-500 via-teal-500 to-emerald-500 opacity-40" />
 
@@ -399,7 +399,7 @@ const MedicalProfileForm = () => {
                             ? 'bg-gradient-to-br from-teal-400 to-emerald-500 text-white shadow-lg'
                             : isActive
                             ? 'bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-xl'
-                            : 'bg-white text-surface-400 border-2 border-surface-200 group-hover:border-brand-300 group-hover:text-brand-500 group-hover:bg-brand-50/50'
+                            : 'bg-surface-0 text-surface-400 border-2 border-surface-200 group-hover:border-brand-300 group-hover:text-brand-500 group-hover:bg-brand-50/50'
                         }`}
                       >
                         {isDone ? (
@@ -444,7 +444,7 @@ const MedicalProfileForm = () => {
 
         {/* ══ AI UPLOAD CARD ════════════════════ */}
         <FadeInUp delay={0.05}>
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-card p-6 sm:p-7 mb-6 overflow-hidden relative">
+          <div className="bg-surface-0/80 backdrop-blur-xl rounded-3xl border border-surface-200/60 dark:border-surface-200/40 shadow-card p-6 sm:p-7 mb-6 overflow-hidden relative">
             {/* Decorative gradient stripe */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 via-teal-500 to-emerald-500" />
 
@@ -571,7 +571,7 @@ const MedicalProfileForm = () => {
                       {aiStatus === 'done' && aiFilledFields.size > 0 && (
                         <div className="flex flex-wrap gap-1.5 mt-2">
                           {[...aiFilledFields].map(f => (
-                            <span key={f} className="px-2 py-0.5 rounded-md bg-white/80 border border-emerald-200/50 text-[10px] font-semibold text-emerald-600 capitalize">
+                            <span key={f} className="px-2 py-0.5 rounded-md bg-surface-0/80 border border-emerald-200/50 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 capitalize">
                               {f.replace(/([A-Z])/g, ' $1').trim()}
                             </span>
                           ))}
@@ -595,7 +595,7 @@ const MedicalProfileForm = () => {
                           <FiX className="w-3 h-3" />
                         </button>
                       </div>
-                      <p className="text-xs text-surface-600 leading-relaxed whitespace-pre-wrap max-h-32 overflow-y-auto font-mono bg-white/60 rounded-xl p-3 border border-surface-100">
+                      <p className="text-xs text-surface-600 leading-relaxed whitespace-pre-wrap max-h-32 overflow-y-auto font-mono bg-surface-0/60 rounded-xl p-3 border border-surface-100">
                         {aiExtractedText}{aiExtractedText.length >= 500 ? '...' : ''}
                       </p>
                     </motion.div>
@@ -645,7 +645,7 @@ const MedicalProfileForm = () => {
             exit={{ opacity: 0, x: -24, scale: 0.99 }}
             transition={{ duration: 0.35, ease: easeOut }}
           >
-            <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-card p-6 sm:p-8 relative overflow-hidden">
+            <div className="bg-surface-0/80 backdrop-blur-xl rounded-3xl border border-surface-200/60 dark:border-surface-200/40 shadow-card p-6 sm:p-8 relative overflow-hidden">
               {/* Top accent line matching step color */}
               <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${steps[step - 1].color}`} />
 
@@ -931,7 +931,7 @@ const MedicalProfileForm = () => {
                             transition={{ duration: 0.3, ease: easeOut }}
                             className={`p-5 rounded-2xl border-2 transition-all duration-200 relative overflow-hidden ${
                               isMandatory
-                                ? 'bg-white border-surface-200/80 shadow-sm hover:shadow-md'
+                                ? 'bg-surface-0 border-surface-200/80 shadow-sm hover:shadow-md'
                                 : 'bg-surface-50/50 border-surface-200/50 hover:border-surface-300'
                             }`}
                           >

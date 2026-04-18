@@ -74,7 +74,7 @@ const PatientDashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           className="relative rounded-3xl overflow-hidden mb-8 shadow-card group"
         >
-          <div className="absolute inset-0 bg-surface-950" />
+          <div className="absolute inset-0 bg-surface-950 dark:bg-surface-100" />
           <motion.div
             animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
@@ -138,7 +138,7 @@ const PatientDashboard = () => {
                 transition={{ delay: 0.3 }}
                 className="flex flex-wrap items-center justify-center gap-3 flex-shrink-0"
               >
-                <Link to="/patient/qr" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-surface-950 text-xs font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200">
+                <Link to="/patient/qr" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-0 text-surface-950 text-xs font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200">
                   <FiMaximize2 className="w-4 h-4" /> QR ID
                 </Link>
                 <button onClick={() => window.print()} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold hover:bg-white/20 transition-all duration-200">
@@ -168,7 +168,7 @@ const PatientDashboard = () => {
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="dashTab"
-                    className="absolute inset-0 bg-white border border-surface-200/40 rounded-xl shadow-sm"
+                    className="absolute inset-0 bg-surface-0 border border-surface-200/40 rounded-xl shadow-sm"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -212,7 +212,7 @@ const PatientDashboard = () => {
                       <StaggerItem key={i}>
                         <motion.div
                           whileHover={{ y: -4 }}
-                          className="group relative rounded-2xl bg-white border border-surface-200/50 p-5 overflow-hidden shadow-card hover:shadow-float transition-all duration-300"
+                          className="group relative rounded-2xl bg-surface-0 border border-surface-200/50 p-5 overflow-hidden shadow-card hover:shadow-float transition-all duration-300"
                         >
                           <div className={`relative z-10 w-9 h-9 rounded-xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center mb-4 shadow-md`}>
                             <stat.icon className="w-4 h-4 text-white" />
@@ -231,7 +231,7 @@ const PatientDashboard = () => {
                     {/* Allergies */}
                     {profile.allergies?.length > 0 && (
                       <FadeInUp delay={0.1}>
-                        <div className="bg-white rounded-2xl border border-surface-200/50 overflow-hidden shadow-card">
+                        <div className="bg-surface-0 rounded-2xl border border-surface-200/50 overflow-hidden shadow-card">
                           <div className="px-5 py-4 bg-red-50/50 border-b border-red-100/50 flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-md">
@@ -251,7 +251,7 @@ const PatientDashboard = () => {
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.1 + i * 0.05 }}
-                                className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-red-100/50 hover:bg-red-50/30 transition-all duration-200"
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-0 border border-red-100/50 hover:bg-red-50/30 transition-all duration-200"
                               >
                                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                                 <span className="text-sm font-semibold text-red-900 flex-1">{a.name}</span>
@@ -270,7 +270,7 @@ const PatientDashboard = () => {
                     {/* Medications */}
                     {profile.currentMedications?.length > 0 && (
                       <FadeInUp delay={0.15}>
-                        <div className="bg-white rounded-2xl border border-surface-200/50 overflow-hidden shadow-card hover:shadow-float transition-shadow duration-300">
+                        <div className="bg-surface-0 rounded-2xl border border-surface-200/50 overflow-hidden shadow-card hover:shadow-float transition-shadow duration-300">
                           <div className="px-5 py-4 border-b border-surface-100/50 flex items-center gap-3">
                             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-indigo-600 flex items-center justify-center shadow-md">
                               <FiHeart className="w-4 h-4 text-white" />
@@ -295,7 +295,7 @@ const PatientDashboard = () => {
                                     <p className="text-[10px] text-surface-400 mt-0.5">{m.frequency}</p>
                                   </div>
                                 </div>
-                                <span className="px-3 py-1.5 rounded-lg bg-white border border-brand-100 text-brand-700 text-xs font-semibold">{m.dosage}</span>
+                                <span className="px-3 py-1.5 rounded-lg bg-surface-0 border border-brand-100 text-brand-700 text-xs font-semibold">{m.dosage}</span>
                               </div>
                             ))}
                           </div>
@@ -309,7 +309,7 @@ const PatientDashboard = () => {
                 <div className="lg:col-span-4 space-y-6">
                   {/* Quick Actions */}
                   <FadeInUp delay={0.2}>
-                    <div className="bg-white rounded-2xl border border-surface-200/50 p-2 shadow-card">
+                    <div className="bg-surface-0 rounded-2xl border border-surface-200/50 p-2 shadow-card">
                       <p className="px-4 pt-3 pb-2 text-[10px] font-bold text-surface-400 uppercase tracking-wider">Quick Actions</p>
                       {[
                         { to: '/patient/medical-profile', icon: FiEdit3, label: 'Health Profile', sub: 'Update medical data', color: 'from-brand-500 to-indigo-600' },
@@ -347,7 +347,7 @@ const PatientDashboard = () => {
                       <Link to="/patient/predictions" className="block group">
                         <motion.div
                           whileHover={{ y: -4 }}
-                          className="relative rounded-2xl bg-surface-950 p-6 shadow-card overflow-hidden border border-white/5"
+                          className="relative rounded-2xl bg-surface-950 dark:bg-surface-100 p-6 shadow-card overflow-hidden border border-white/5"
                         >
                           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/20 rounded-full blur-[50px]" />
                           <div className="absolute bottom-0 left-0 w-24 h-24 bg-teal-500/10 rounded-full blur-[30px]" />
@@ -396,7 +396,7 @@ const PatientDashboard = () => {
                   {/* Emergency Contacts */}
                   {profile.emergencyContacts?.length > 0 && (
                     <FadeInUp delay={0.3}>
-                      <div className="bg-white rounded-2xl border border-surface-200/50 p-5 shadow-card">
+                      <div className="bg-surface-0 rounded-2xl border border-surface-200/50 p-5 shadow-card">
                          <div className="flex items-center gap-2.5 mb-4">
                             <div className="w-8 h-8 rounded-xl bg-red-50 flex items-center justify-center">
                                <FiPhone className="w-4 h-4 text-red-500" />
@@ -456,7 +456,7 @@ const PatientDashboard = () => {
 
                 <div className="space-y-4">
                   {visits.length === 0 && !showAddVisit ? (
-                    <div className="bg-white rounded-2xl border border-surface-200/50 p-12 text-center shadow-card">
+                    <div className="bg-surface-0 rounded-2xl border border-surface-200/50 p-12 text-center shadow-card">
                       <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-4">
                          <FiCalendar className="w-7 h-7 text-slate-300" />
                       </div>
@@ -476,7 +476,7 @@ const PatientDashboard = () => {
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.06 }}
-                        className="bg-white rounded-2xl border border-surface-200/50 overflow-hidden shadow-card hover:shadow-float transition-all duration-300"
+                        className="bg-surface-0 rounded-2xl border border-surface-200/50 overflow-hidden shadow-card hover:shadow-float transition-all duration-300"
                       >
                         <div className="px-5 py-4 border-b border-surface-100 flex items-center justify-between">
                           <div className="flex items-center gap-4">
@@ -508,7 +508,7 @@ const PatientDashboard = () => {
                                <h4 className="text-[10px] font-bold text-surface-400 uppercase tracking-wider mb-2">Prescriptions</h4>
                                <div className="flex flex-wrap gap-2.5">
                                   {v.prescriptions.map((p, j) => (
-                                    <div key={j} className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-brand-50 shadow-xs hover:border-brand-200 transition-all">
+                                    <div key={j} className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-surface-0 border border-brand-50 shadow-xs hover:border-brand-200 transition-all">
                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-500" />
                                        <div>
                                           <p className="text-xs font-semibold text-surface-950">{p.medicine}</p>
@@ -596,7 +596,7 @@ const WeightTracker = ({ currentWeight, weightHistory = [], onWeightUpdated }) =
   const change = lastTwo.length === 2 ? (lastTwo[1] - lastTwo[0]).toFixed(1) : null;
 
   return (
-    <div className="bg-white rounded-2xl border border-surface-200/50 p-5 shadow-card">
+    <div className="bg-surface-0 rounded-2xl border border-surface-200/50 p-5 shadow-card">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md">
@@ -847,7 +847,7 @@ const AddVisitModal = ({ onClose, onVisitAdded }) => {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 16, scale: 0.98 }}
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl border border-surface-200/50 shadow-elevated mb-6 overflow-hidden"
+      className="bg-surface-0 rounded-2xl border border-surface-200/50 shadow-elevated mb-6 overflow-hidden"
     >
       {/* Header */}
       <div className="px-5 py-4 border-b border-surface-100 flex items-center justify-between">

@@ -33,11 +33,11 @@ const steps = [
 
 const LandingPage = () => {
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-surface-0">
 
       {/* ══ HERO ═══════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-50/50 via-white to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-50/50 via-surface-0 to-surface-0 dark:from-brand-500/5 dark:via-surface-50 dark:to-surface-50" />
         <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-100/25 rounded-full blur-[140px]" />
         <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-teal-100/20 rounded-full blur-[120px]" />
 
@@ -114,7 +114,7 @@ const LandingPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-100/40 to-teal-100/25 rounded-3xl blur-2xl scale-95" />
 
                 <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.4 }}
-                  className="relative bg-white rounded-3xl border border-surface-200/60 p-7 shadow-elevated">
+                  className="relative bg-surface-0 rounded-3xl border border-surface-200/60 p-7 shadow-elevated">
 
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/25">
@@ -178,7 +178,7 @@ const LandingPage = () => {
                 {/* Floating badges */}
                 <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.1, duration: 0.6 }}
                   whileHover={{ scale: 1.05 }}
-                  className="absolute -left-5 top-16 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
+                  className="absolute -left-5 top-16 bg-surface-0 rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
                   <div className="w-9 h-9 rounded-xl bg-teal-50 border border-teal-200/40 flex items-center justify-center">
                     <FiSmartphone className="w-4 h-4 text-teal-600" />
                   </div>
@@ -190,7 +190,7 @@ const LandingPage = () => {
 
                 <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.3, duration: 0.6 }}
                   whileHover={{ scale: 1.05 }}
-                  className="absolute -right-5 bottom-12 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
+                  className="absolute -right-5 bottom-12 bg-surface-0 rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
                   <div className="w-9 h-9 rounded-xl bg-brand-50 border border-brand-200/40 flex items-center justify-center">
                     <FiLock className="w-4 h-4 text-brand-600" />
                   </div>
@@ -206,7 +206,7 @@ const LandingPage = () => {
       </section>
 
       {/* ══ STATS ══════════════════════════════════════════════ */}
-      <section className="border-y border-surface-100 bg-white">
+      <section className="border-y border-surface-100 bg-surface-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-surface-100">
             {stats.map((stat, i) => (
@@ -246,7 +246,7 @@ const LandingPage = () => {
             {features.map((f, i) => (
               <StaggerItem key={i}>
                 <motion.div whileHover={{ y: -6 }}
-                  className="group relative p-7 rounded-3xl border border-surface-200/60 bg-white hover:shadow-float transition-all duration-300 overflow-hidden">
+                  className="group relative p-7 rounded-3xl border border-surface-200/60 bg-surface-0 hover:shadow-float transition-all duration-300 overflow-hidden">
                   {/* Gradient top accent on hover */}
                   <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${f.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                   <div className={`w-12 h-12 rounded-2xl ${f.bg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-200`}>
@@ -262,7 +262,7 @@ const LandingPage = () => {
       </section>
 
       {/* ══ HOW IT WORKS ═══════════════════════════════════════ */}
-      <section className="py-28 bg-surface-900 relative overflow-hidden">
+      <section className="py-28 bg-surface-900 dark:bg-surface-100 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-brand-500/[0.07] rounded-full blur-[120px]" />
           <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-teal-500/[0.05] rounded-full blur-[80px]" />
@@ -330,7 +330,7 @@ const LandingPage = () => {
 
                 <div className="flex flex-wrap gap-4 justify-center">
                   <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
-                    <Link to="/patient/register" className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-white text-brand-700 font-bold text-[15px] shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <Link to="/patient/register" className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-surface-0 text-brand-700 font-bold text-[15px] shadow-xl hover:shadow-2xl transition-all duration-300">
                       Get Started Free <FiArrowRight className="w-4 h-4" />
                     </Link>
                   </motion.div>
@@ -347,7 +347,7 @@ const LandingPage = () => {
       </section>
 
       {/* ══ FOOTER ═════════════════════════════════════════════ */}
-      <footer className="border-t border-surface-100 pt-14 pb-8 bg-white">
+      <footer className="border-t border-surface-100 pt-14 pb-8 bg-surface-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-3 gap-10 mb-12">
             <div>

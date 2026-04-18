@@ -110,7 +110,7 @@ const ShimmerCard = ({ delay = 0 }) => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay }}
-    className="rounded-2xl bg-white border border-surface-200/60 p-5 space-y-4"
+    className="rounded-2xl bg-surface-0 border border-surface-200/60 p-5 space-y-4"
   >
     <div className="flex items-center justify-between">
       <div className="h-5 w-20 rounded-full bg-surface-100 animate-pulse" />
@@ -321,7 +321,7 @@ const AIPredictions = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative rounded-3xl border-2 border-dashed border-surface-200 bg-white p-16 text-center overflow-hidden"
+            className="relative rounded-3xl border-2 border-dashed border-surface-200 bg-surface-0 p-16 text-center overflow-hidden"
           >
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-[0.02]" style={{
@@ -409,7 +409,7 @@ const AIPredictions = () => {
                   {activeTab === tab.id && (
                     <motion.div
                       layoutId="activeAITab"
-                      className="absolute inset-0 bg-white rounded-xl shadow-soft border border-surface-200/40"
+                      className="absolute inset-0 bg-surface-0 rounded-xl shadow-soft border border-surface-200/40"
                       transition={{ type: 'spring', stiffness: 400, damping: 35 }}
                     />
                   )}
@@ -435,7 +435,7 @@ const AIPredictions = () => {
                   {/* Overall Risk + Summary */}
                   <div className="grid lg:grid-cols-5 gap-5">
                     {/* Overall Risk Card */}
-                    <div className="lg:col-span-2 rounded-3xl bg-white/70 backdrop-blur-sm border border-surface-200/40 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-card transition-shadow duration-300">
+                    <div className="lg:col-span-2 rounded-3xl bg-surface-0/70 backdrop-blur-sm border border-surface-200/40 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-card transition-shadow duration-300">
                       <RiskRing percentage={overallRisk} size={160} strokeWidth={12} />
                       <p className="text-lg font-bold text-surface-900 mt-5">Overall Health Risk</p>
                       <p className="text-[12px] text-surface-400 mt-1 max-w-[200px]">
@@ -539,7 +539,7 @@ const AIPredictions = () => {
                 >
                   {/* Warnings */}
                   {predictions.warnings?.length > 0 && (
-                    <div className="rounded-3xl bg-white border border-surface-200/60 overflow-hidden shadow-sm hover:shadow-card transition-shadow duration-300">
+                    <div className="rounded-3xl bg-surface-0 border border-surface-200/60 overflow-hidden shadow-sm hover:shadow-card transition-shadow duration-300">
                       <div className="px-6 py-5 border-b border-surface-100">
                         <SectionHeader
                           icon={FiAlertCircle}
@@ -575,7 +575,7 @@ const AIPredictions = () => {
 
                   {/* Recommendations */}
                   {predictions.recommendations?.length > 0 && (
-                    <div className="rounded-3xl bg-white border border-surface-200/60 overflow-hidden shadow-sm hover:shadow-card transition-shadow duration-300">
+                    <div className="rounded-3xl bg-surface-0 border border-surface-200/60 overflow-hidden shadow-sm hover:shadow-card transition-shadow duration-300">
                       <div className="px-6 py-5 border-b border-surface-100">
                         <SectionHeader
                           icon={FiHeart}
@@ -621,7 +621,7 @@ const AIPredictions = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="rounded-3xl bg-white border border-surface-200/60 overflow-hidden shadow-sm">
+                  <div className="rounded-3xl bg-surface-0 border border-surface-200/60 overflow-hidden shadow-sm">
                     <div className="px-6 py-5 border-b border-surface-100">
                       <SectionHeader
                         icon={FiShield}
@@ -638,7 +638,7 @@ const AIPredictions = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.15 + i * 0.1 }}
                           whileHover={{ y: -3, scale: 1.01 }}
-                          className="group relative p-5 rounded-2xl bg-gradient-to-br from-brand-50/80 via-indigo-50/50 to-white border border-brand-200/30 hover:border-brand-300/50 hover:shadow-lg transition-all duration-300 overflow-hidden"
+                          className="group relative p-5 rounded-2xl bg-gradient-to-br from-brand-50/80 via-indigo-50/50 to-surface-0 border border-brand-200/30 hover:border-brand-300/50 hover:shadow-lg transition-all duration-300 overflow-hidden dark:from-brand-500/10 dark:via-indigo-500/5 dark:to-surface-100 dark:border-brand-400/20"
                         >
                           {/* Corner decoration */}
                           <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-brand-100/40 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

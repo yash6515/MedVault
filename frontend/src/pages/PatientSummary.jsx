@@ -65,7 +65,7 @@ const PatientSummary = ({ patient, healthId, onBack }) => {
           <motion.button
             whileHover={{ x: -2 }}
             onClick={onBack}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-surface-200 text-sm font-bold text-surface-600 shadow-sm hover:shadow-md transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-0 border border-surface-200 text-sm font-bold text-surface-600 shadow-sm hover:shadow-md transition-all"
           >
             <FiArrowLeft className="w-4 h-4" /> Back to Lookup
           </motion.button>
@@ -79,7 +79,7 @@ const PatientSummary = ({ patient, healthId, onBack }) => {
         {/* ─── Patient Header Card ─── */}
         <FadeInUp>
           <div className="relative rounded-[32px] overflow-hidden mb-10 shadow-elevated group">
-            <div className="absolute inset-0 bg-surface-950" />
+            <div className="absolute inset-0 bg-surface-950 dark:bg-surface-100" />
             <motion.div
               animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.45, 0.3], rotate: [0, 5, 0] }}
               transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
@@ -208,7 +208,7 @@ const PatientSummary = ({ patient, healthId, onBack }) => {
                   {patient.currentMedications.map((m, i) => (
                     <motion.div key={i} whileHover={{ x: 6 }} className="px-6 py-5 flex items-center justify-between group hover:bg-brand-50/30 transition-all duration-300">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-white border border-surface-100 flex items-center justify-center text-brand-600 font-bold text-xs group-hover:bg-brand-100 transition-all">
+                        <div className="w-10 h-10 rounded-xl bg-surface-0 border border-surface-100 flex items-center justify-center text-brand-600 font-bold text-xs group-hover:bg-brand-100 transition-all">
                           {i + 1}
                         </div>
                         <div>
@@ -216,7 +216,7 @@ const PatientSummary = ({ patient, healthId, onBack }) => {
                           <p className="text-xs font-semibold text-surface-400 mt-0.5 tracking-tight">{m.frequency}</p>
                         </div>
                       </div>
-                      <span className="px-4 py-2 rounded-2xl bg-white border border-brand-100 text-brand-700 text-xs font-bold shadow-sm group-hover:border-brand-500 transition-all">
+                      <span className="px-4 py-2 rounded-2xl bg-surface-0 border border-brand-100 text-brand-700 text-xs font-bold shadow-sm group-hover:border-brand-500 transition-all">
                         {m.dosage}
                       </span>
                     </motion.div>
@@ -264,7 +264,7 @@ const PatientSummary = ({ patient, healthId, onBack }) => {
                                 <p className="text-xs text-surface-400 font-semibold">{v.hospitalName}</p>
                               </div>
                             </div>
-                            <span className="px-3 py-1.5 rounded-xl bg-white border border-surface-200 text-[10px] font-bold text-surface-400 uppercase tracking-tighter">
+                            <span className="px-3 py-1.5 rounded-xl bg-surface-0 border border-surface-200 text-[10px] font-bold text-surface-400 uppercase tracking-tighter">
                               {new Date(v.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                             </span>
                           </div>

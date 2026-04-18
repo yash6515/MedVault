@@ -12,10 +12,10 @@ const icons = {
 };
 
 const colors = {
-  success: 'bg-emerald-50 border-emerald-200/60 text-emerald-800',
-  error: 'bg-danger-50 border-danger-200/60 text-danger-700',
-  warning: 'bg-amber-50 border-amber-200/60 text-amber-800',
-  info: 'bg-brand-50 border-brand-200/60 text-brand-800',
+  success: 'bg-emerald-50 border-emerald-200/60 text-emerald-800 dark:bg-emerald-500/10 dark:border-emerald-500/30 dark:text-emerald-200',
+  error: 'bg-danger-50 border-danger-200/60 text-danger-700 dark:bg-danger-500/10 dark:border-danger-500/30 dark:text-danger-200',
+  warning: 'bg-amber-50 border-amber-200/60 text-amber-800 dark:bg-amber-500/10 dark:border-amber-500/30 dark:text-amber-200',
+  info: 'bg-brand-50 border-brand-200/60 text-brand-800 dark:bg-brand-500/10 dark:border-brand-500/30 dark:text-brand-200',
 };
 
 const iconColors = {

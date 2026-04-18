@@ -72,7 +72,7 @@ const DoctorRegister = () => {
           </div>
 
           {/* Card */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-card p-6 sm:p-7 relative overflow-hidden">
+          <div className="bg-surface-0/80 backdrop-blur-xl rounded-3xl border border-surface-200/60 dark:border-surface-200/40 shadow-card p-6 sm:p-7 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-surface-700 via-surface-800 to-surface-900" />
 
             {error && (

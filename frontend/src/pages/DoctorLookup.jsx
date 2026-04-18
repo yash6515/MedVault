@@ -147,8 +147,8 @@ const DoctorLookup = () => {
                     whileTap={{ scale: 0.98 }}
                     className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-[14px] text-sm font-bold transition-all duration-300 ${
                       mode === tab.id
-                        ? 'bg-white text-surface-950 shadow-md ring-1 ring-surface-200/50'
-                        : 'text-surface-400 hover:text-surface-700 hover:bg-white/50'
+                        ? 'bg-surface-0 text-surface-950 shadow-md ring-1 ring-surface-200/50'
+                        : 'text-surface-400 hover:text-surface-700 hover:bg-surface-0/50'
                     }`}
                   >
                     <tab.icon className={`w-4 h-4 ${mode === tab.id ? 'text-brand-600' : ''}`} /> 
