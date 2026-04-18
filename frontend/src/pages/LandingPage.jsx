@@ -8,18 +8,40 @@ import {
   FiGlobe, FiTrendingUp, FiStar
 } from 'react-icons/fi';
 
+const features = [
+  { icon: FiShield, color: 'text-brand-600', bg: 'bg-brand-50', gradient: 'from-brand-500 to-indigo-500', title: 'Unique Health ID', desc: 'Auto-generated MV-XXXX-XXXX identifier with downloadable QR code for every patient.' },
+  { icon: FiSmartphone, color: 'text-teal-600', bg: 'bg-teal-50', gradient: 'from-teal-500 to-emerald-500', title: 'Instant QR Access', desc: 'Any doctor scans the QR code, verifies via PIN, and instantly sees the full medical profile.' },
+  { icon: FiActivity, color: 'text-rose-500', bg: 'bg-rose-50', gradient: 'from-rose-500 to-red-500', title: 'Allergy Alerts', desc: 'Drug allergies highlighted with severity badges. Life-threatening allergies impossible to miss.' },
+  { icon: FiCpu, color: 'text-amber-600', bg: 'bg-amber-50', gradient: 'from-amber-500 to-orange-500', title: 'AI Health Predictions', desc: 'AI analyzes conditions, family history, and lifestyle to predict risks and suggest screenings.' },
+  { icon: FiLock, color: 'text-violet-600', bg: 'bg-violet-50', gradient: 'from-violet-500 to-purple-500', title: 'Privacy First', desc: '4-digit PIN protection, encrypted storage. Every access is logged and fully auditable.' },
+  { icon: FiZap, color: 'text-sky-600', bg: 'bg-sky-50', gradient: 'from-sky-500 to-blue-500', title: 'Emergency Bypass', desc: 'When patients are unconscious, verified doctors access critical allergies, blood group, medications.' },
+];
+
+const stats = [
+  { value: '10,000+', label: 'Health IDs Created', icon: FiUsers },
+  { value: '500+', label: 'Verified Doctors', icon: FiHeart },
+  { value: '99.9%', label: 'Uptime', icon: FiGlobe },
+  { value: '< 2s', label: 'QR Scan Time', icon: FiZap },
+];
+
+const steps = [
+  { step: '01', title: 'Register', desc: 'Sign up with basic info. Get your unique Health ID and QR code instantly.', icon: FiUsers },
+  { step: '02', title: 'Build Profile', desc: 'Add allergies, medications, conditions, surgeries, and family history.', icon: FiHeart },
+  { step: '03', title: 'Doctor Scans', desc: 'Doctor scans QR, enters your PIN, views your complete medical record.', icon: FiSmartphone },
+  { step: '04', title: 'AI Predicts', desc: 'AI analyzes your data to predict health risks and suggest screenings.', icon: FiTrendingUp },
+];
+
 const LandingPage = () => {
   return (
     <div className="overflow-hidden bg-white">
 
-      {/* ══ HERO ═══════════════════════════════ */}
+      {/* ══ HERO ═══════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center">
-        {/* Soft gradient bg */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-50/40 via-white to-white" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-100/30 rounded-full blur-[120px]" />
-        <div className="absolute bottom-20 left-0 w-[400px] h-[400px] bg-teal-100/20 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-50/50 via-white to-white" />
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-100/25 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-teal-100/20 rounded-full blur-[120px]" />
 
-        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             <div>
@@ -32,7 +54,7 @@ const LandingPage = () => {
               </FadeIn>
 
               <FadeInUp delay={0.1}>
-                <h1 className="text-3xl sm:text-4xl leading-[1.15] font-bold tracking-tight text-surface-900 mb-5">
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl leading-[1.05] font-bold tracking-tight text-surface-900 mb-6">
                   Your complete
                   <br />
                   medical{' '}
@@ -41,7 +63,7 @@ const LandingPage = () => {
                     <motion.span
                       initial={{ width: 0 }} animate={{ width: '100%' }}
                       transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute bottom-1 left-0 h-3 bg-brand-100/60 -z-10 rounded"
+                      className="absolute bottom-2 left-0 h-3 bg-brand-100/70 -z-10 rounded"
                     />
                   </span>
                   <br />
@@ -50,7 +72,7 @@ const LandingPage = () => {
               </FadeInUp>
 
               <FadeInUp delay={0.2}>
-                <p className="text-sm text-surface-500 leading-relaxed max-w-lg mb-8">
+                <p className="text-lg text-surface-500 leading-relaxed max-w-lg mb-10">
                   MedVault gives every patient a unique Health ID and QR code. Allergies, medications,
                   conditions — accessible instantly by any authorized doctor, anywhere.
                 </p>
@@ -59,13 +81,13 @@ const LandingPage = () => {
               <FadeInUp delay={0.3}>
                 <div className="flex flex-wrap gap-4">
                   <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
-                    <Link to="/patient/register" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold text-sm shadow-lg shadow-brand-600/20 hover:bg-brand-700 hover:shadow-xl transition-all duration-300">
+                    <Link to="/patient/register" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-brand-600 text-white font-bold text-sm shadow-lg shadow-brand-600/25 hover:bg-brand-700 hover:shadow-xl transition-all duration-300">
                       Create Your Health ID
                       <FiArrowRight className="w-4 h-4" />
                     </Link>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Link to="/doctor/login" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-surface-200 text-surface-700 font-semibold text-sm hover:border-brand-200 hover:bg-brand-50/30 transition-all duration-300">
+                    <Link to="/doctor/login" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border-2 border-surface-200 text-surface-700 font-bold text-sm hover:border-brand-200 hover:bg-brand-50/30 transition-all duration-300">
                       Doctor Access
                     </Link>
                   </motion.div>
@@ -73,10 +95,10 @@ const LandingPage = () => {
               </FadeInUp>
 
               <FadeInUp delay={0.4}>
-                <div className="flex items-center gap-8 mt-10">
+                <div className="flex items-center gap-8 mt-12">
                   {['PIN Protected', 'AI Powered', 'Instant Access'].map((label, i) => (
-                    <span key={i} className="flex items-center gap-2 text-sm text-surface-500">
-                      <span className="w-5 h-5 rounded-lg bg-teal-50 border border-teal-200/50 flex items-center justify-center">
+                    <span key={i} className="flex items-center gap-2 text-sm text-surface-500 font-medium">
+                      <span className="w-5 h-5 rounded-lg bg-teal-50 border border-teal-200/60 flex items-center justify-center flex-shrink-0">
                         <FiCheck className="w-3 h-3 text-teal-600" />
                       </span>
                       {label}
@@ -86,16 +108,16 @@ const LandingPage = () => {
               </FadeInUp>
             </div>
 
-            {/* ── Hero Card ── */}
+            {/* Hero Card */}
             <FadeInUp delay={0.2}>
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-100/30 to-teal-100/20 rounded-3xl blur-2xl scale-95" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-100/40 to-teal-100/25 rounded-3xl blur-2xl scale-95" />
 
-                <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.4 }}
+                <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.4 }}
                   className="relative bg-white rounded-3xl border border-surface-200/60 p-7 shadow-elevated">
 
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/20">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/25">
                       P
                     </div>
                     <div className="flex-1">
@@ -107,17 +129,17 @@ const LandingPage = () => {
 
                   <div className="space-y-3 mb-6">
                     <motion.div initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.6 }}
-                      className="flex items-center gap-3 p-3.5 rounded-2xl bg-danger-50 border border-danger-200/40">
-                      <div className="w-8 h-8 rounded-xl bg-danger-500 flex items-center justify-center">
+                      className="flex items-center gap-3 p-3.5 rounded-2xl bg-rose-50 border border-rose-200/40">
+                      <div className="w-8 h-8 rounded-xl bg-rose-500 flex items-center justify-center flex-shrink-0">
                         <FiShield className="w-4 h-4 text-white" />
                       </div>
-                      <span className="text-xs font-bold text-danger-700 uppercase tracking-wide flex-1">Allergic to Penicillin</span>
-                      <span className="px-2 py-1 rounded-lg bg-danger-100 text-[10px] font-bold text-danger-600">SEVERE</span>
+                      <span className="text-xs font-bold text-rose-700 uppercase tracking-wide flex-1">Allergic to Penicillin</span>
+                      <span className="px-2 py-1 rounded-lg bg-rose-100 text-[10px] font-bold text-rose-600">SEVERE</span>
                     </motion.div>
 
                     <motion.div initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.7 }}
                       className="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-50 border border-surface-200/50">
-                      <div className="w-8 h-8 rounded-xl bg-brand-50 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-xl bg-brand-50 flex items-center justify-center flex-shrink-0">
                         <FiActivity className="w-4 h-4 text-brand-600" />
                       </div>
                       <span className="text-sm text-surface-700 font-medium flex-1">Metformin 500mg</span>
@@ -126,7 +148,7 @@ const LandingPage = () => {
 
                     <motion.div initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.8 }}
                       className="flex items-center gap-3 p-3.5 rounded-2xl bg-surface-50 border border-surface-200/50">
-                      <div className="w-8 h-8 rounded-xl bg-teal-50 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0">
                         <FiHeart className="w-4 h-4 text-teal-600" />
                       </div>
                       <span className="text-sm text-surface-700 font-medium flex-1">Type 2 Diabetes</span>
@@ -156,7 +178,7 @@ const LandingPage = () => {
                 {/* Floating badges */}
                 <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.1, duration: 0.6 }}
                   whileHover={{ scale: 1.05 }}
-                  className="absolute -left-4 top-16 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
+                  className="absolute -left-5 top-16 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
                   <div className="w-9 h-9 rounded-xl bg-teal-50 border border-teal-200/40 flex items-center justify-center">
                     <FiSmartphone className="w-4 h-4 text-teal-600" />
                   </div>
@@ -168,7 +190,7 @@ const LandingPage = () => {
 
                 <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.3, duration: 0.6 }}
                   whileHover={{ scale: 1.05 }}
-                  className="absolute -right-4 bottom-12 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
+                  className="absolute -right-5 bottom-12 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
                   <div className="w-9 h-9 rounded-xl bg-brand-50 border border-brand-200/40 flex items-center justify-center">
                     <FiLock className="w-4 h-4 text-brand-600" />
                   </div>
@@ -183,25 +205,18 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ══ STATS ══════════════════════════════ */}
-      <section className="py-8 border-y border-surface-100 bg-surface-50/50">
+      {/* ══ STATS ══════════════════════════════════════════════ */}
+      <section className="border-y border-surface-100 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-6">
-            {[
-              { value: '10,000+', label: 'Health IDs Created', icon: FiUsers },
-              { value: '500+', label: 'Verified Doctors', icon: FiHeart },
-              { value: '99.9%', label: 'Uptime', icon: FiGlobe },
-              { value: '< 2s', label: 'QR Scan Time', icon: FiZap },
-            ].map((stat, i) => (
-              <FadeInUp key={i} delay={i * 0.1}>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-white border border-surface-200/60 flex items-center justify-center shadow-xs">
-                    <stat.icon className="w-4 h-4 text-brand-500" />
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-surface-100">
+            {stats.map((stat, i) => (
+              <FadeInUp key={i} delay={i * 0.08}>
+                <div className="flex flex-col items-center gap-2 py-10 px-6 text-center group">
+                  <div className="w-11 h-11 rounded-2xl bg-brand-50 flex items-center justify-center mb-1 group-hover:bg-brand-100 transition-colors duration-200">
+                    <stat.icon className="w-5 h-5 text-brand-600" />
                   </div>
-                  <div>
-                    <p className="text-lg font-bold text-surface-900 tracking-tight">{stat.value}</p>
-                    <p className="text-[11px] text-surface-400 font-medium">{stat.label}</p>
-                  </div>
+                  <p className="text-2xl font-bold text-surface-900 tracking-tight">{stat.value}</p>
+                  <p className="text-xs text-surface-400 font-medium">{stat.label}</p>
                 </div>
               </FadeInUp>
             ))}
@@ -209,37 +224,32 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ══ FEATURES ═══════════════════════════ */}
-      <section className="py-24 relative">
+      {/* ══ FEATURES ═══════════════════════════════════════════ */}
+      <section className="py-28 relative">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-xs font-semibold text-brand-600 uppercase tracking-wider mb-4">
                 Features
               </span>
-              <h2 className="text-2xl font-bold text-surface-900 tracking-tight mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-surface-900 tracking-tight mb-4">
                 Everything you need for
                 <br />universal health records
               </h2>
-              <p className="text-base text-surface-400 max-w-xl mx-auto">
+              <p className="text-base text-surface-400 max-w-xl mx-auto leading-relaxed">
                 Built for patients, doctors, and emergency responders. Secure, instant, intelligent.
               </p>
             </div>
           </FadeIn>
 
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              { icon: FiShield, color: 'text-brand-600', bg: 'bg-brand-50', title: 'Unique Health ID', desc: 'Auto-generated MV-XXXX-XXXX identifier with downloadable QR code for every patient.' },
-              { icon: FiSmartphone, color: 'text-teal-600', bg: 'bg-teal-50', title: 'Instant QR Access', desc: 'Any doctor scans the QR code, verifies via PIN, and instantly sees the full medical profile.' },
-              { icon: FiActivity, color: 'text-danger-500', bg: 'bg-danger-50', title: 'Allergy Alerts', desc: 'Drug allergies highlighted with severity badges. Life-threatening allergies impossible to miss.' },
-              { icon: FiCpu, color: 'text-amber-600', bg: 'bg-amber-50', title: 'AI Health Predictions', desc: 'AI analyzes conditions, family history, and lifestyle to predict risks and suggest screenings.' },
-              { icon: FiLock, color: 'text-brand-600', bg: 'bg-brand-50', title: 'Privacy First', desc: '4-digit PIN protection, encrypted storage. Every access is logged and fully auditable.' },
-              { icon: FiZap, color: 'text-teal-600', bg: 'bg-teal-50', title: 'Emergency Bypass', desc: 'When patients are unconscious, verified doctors access critical allergies, blood group, medications.' },
-            ].map((f, i) => (
+            {features.map((f, i) => (
               <StaggerItem key={i}>
-                <motion.div whileHover={{ y: -4 }}
-                  className="group p-7 rounded-3xl border border-surface-200/60 bg-white hover:shadow-float transition-all duration-400">
-                  <div className={`w-12 h-12 rounded-2xl ${f.bg} flex items-center justify-center mb-5`}>
+                <motion.div whileHover={{ y: -6 }}
+                  className="group relative p-7 rounded-3xl border border-surface-200/60 bg-white hover:shadow-float transition-all duration-300 overflow-hidden">
+                  {/* Gradient top accent on hover */}
+                  <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${f.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                  <div className={`w-12 h-12 rounded-2xl ${f.bg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-200`}>
                     <f.icon className={`w-5 h-5 ${f.color}`} />
                   </div>
                   <h3 className="text-[15px] font-bold text-surface-900 mb-2">{f.title}</h3>
@@ -251,42 +261,40 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ══ HOW IT WORKS ═══════════════════════ */}
-      <section className="py-24 bg-surface-900 relative overflow-hidden">
+      {/* ══ HOW IT WORKS ═══════════════════════════════════════ */}
+      <section className="py-28 bg-surface-900 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-500/[0.06] rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-teal-500/[0.05] rounded-full blur-[80px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-brand-500/[0.07] rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-teal-500/[0.05] rounded-full blur-[80px]" />
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <span className="inline-block px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-xs font-semibold text-white/60 uppercase tracking-wider mb-4">
                 How It Works
               </span>
-              <h2 className="text-2xl font-bold text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                 From registration to AI insights
                 <br />in under 2 minutes
               </h2>
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Register', desc: 'Sign up with basic info. Get your unique Health ID and QR code instantly.', icon: FiUsers },
-              { step: '02', title: 'Build Profile', desc: 'Add allergies, medications, conditions, surgeries, and family history.', icon: FiHeart },
-              { step: '03', title: 'Doctor Scans', desc: 'Doctor scans QR, enters your PIN, views your complete medical record.', icon: FiSmartphone },
-              { step: '04', title: 'AI Predicts', desc: 'AI analyzes your data to predict health risks and suggest screenings.', icon: FiTrendingUp },
-            ].map((s, i) => (
+          <div className="grid md:grid-cols-4 gap-10">
+            {steps.map((s, i) => (
               <FadeInUp key={i} delay={i * 0.12}>
-                <motion.div whileHover={{ y: -6 }} className="relative group">
-                  <span className="text-4xl font-bold text-white/[0.04] block mb-3 group-hover:text-white/[0.08] transition-colors">{s.step}</span>
-                  <div className="w-12 h-12 rounded-2xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center mb-4 group-hover:bg-brand-500/20 group-hover:border-brand-400/20 transition-all duration-300">
-                    <s.icon className="w-5 h-5 text-white/50 group-hover:text-brand-300 transition-colors" />
+                <motion.div whileHover={{ y: -8 }} className="relative group text-center md:text-left">
+                  {/* Step circle */}
+                  <div className="w-12 h-12 rounded-full border border-white/10 bg-white/[0.06] flex items-center justify-center mx-auto md:mx-0 mb-5 font-mono text-sm font-bold text-white/40 group-hover:bg-brand-500 group-hover:border-brand-400 group-hover:text-white transition-all duration-300">
+                    {s.step}
+                  </div>
+                  <div className="w-10 h-10 rounded-2xl bg-white/[0.05] border border-white/[0.07] flex items-center justify-center mx-auto md:mx-0 mb-4 group-hover:bg-brand-500/20 group-hover:border-brand-400/20 transition-all duration-300">
+                    <s.icon className="w-5 h-5 text-white/40 group-hover:text-brand-300 transition-colors" />
                   </div>
                   <h3 className="text-base font-bold text-white mb-2">{s.title}</h3>
                   <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">{s.desc}</p>
-                  {i < 3 && <div className="hidden md:block absolute top-8 -right-4 w-8 border-t border-dashed border-white/[0.08]" />}
+                  {i < 3 && <div className="hidden md:block absolute top-6 left-[calc(100%_-_16px)] w-8 border-t border-dashed border-white/[0.10]" />}
                 </motion.div>
               </FadeInUp>
             ))}
@@ -294,8 +302,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ══ CTA ════════════════════════════════ */}
-      <section className="py-24">
+      {/* ══ CTA ════════════════════════════════════════════════ */}
+      <section className="py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 p-12 sm:p-16 text-center">
@@ -312,11 +320,11 @@ const LandingPage = () => {
                   <FiStar className="w-7 h-7 text-white" />
                 </motion.div>
 
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
+                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
                   Ready to secure your
                   <br />health records?
                 </h2>
-                <p className="text-base text-white/50 mb-10 max-w-lg mx-auto">
+                <p className="text-base text-white/50 mb-10 max-w-lg mx-auto leading-relaxed">
                   Create your Health ID in under 2 minutes. It's free, secure, and could save your life in an emergency.
                 </p>
 
@@ -338,12 +346,34 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ══ FOOTER ═════════════════════════════ */}
-      <footer className="border-t border-surface-100 py-10 bg-white">
+      {/* ══ FOOTER ═════════════════════════════════════════════ */}
+      <footer className="border-t border-surface-100 pt-14 pb-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <Logo size="sm" />
-            <span className="text-xs text-surface-400">Built for accessible, secure, and intelligent healthcare</span>
+          <div className="grid sm:grid-cols-3 gap-10 mb-12">
+            <div>
+              <Logo size="sm" />
+              <p className="text-sm text-surface-400 mt-4 leading-relaxed max-w-xs">
+                Universal health identity for every patient — secure, instant, and AI-powered.
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-surface-500 uppercase tracking-wider mb-4">Patients</p>
+              <div className="space-y-3">
+                <Link to="/patient/register" className="block text-sm text-surface-500 hover:text-brand-600 transition-colors">Create Health ID</Link>
+                <Link to="/patient/login" className="block text-sm text-surface-500 hover:text-brand-600 transition-colors">Sign In</Link>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-surface-500 uppercase tracking-wider mb-4">Doctors</p>
+              <div className="space-y-3">
+                <Link to="/doctor/register" className="block text-sm text-surface-500 hover:text-brand-600 transition-colors">Register as Doctor</Link>
+                <Link to="/doctor/login" className="block text-sm text-surface-500 hover:text-brand-600 transition-colors">Doctor Access</Link>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-surface-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span className="text-xs text-surface-400">© 2025 MedVault. Built for accessible, secure healthcare.</span>
+            <span className="text-xs text-surface-300">v1.0</span>
           </div>
         </div>
       </footer>
