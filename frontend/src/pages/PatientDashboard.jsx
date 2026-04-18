@@ -65,8 +65,8 @@ const PatientDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+    <div className="min-h-screen bg-surface-50 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
 
         {/* ══ Header Section ══════════════════ */}
         <motion.div

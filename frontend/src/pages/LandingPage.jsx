@@ -54,7 +54,7 @@ const LandingPage = () => {
               </FadeIn>
 
               <FadeInUp delay={0.1}>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl leading-[1.05] font-bold tracking-tight text-surface-900 mb-6">
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl leading-[1.1] sm:leading-[1.05] font-bold tracking-tight text-surface-900 mb-5 sm:mb-6">
                   Your complete
                   <br />
                   medical{' '}
@@ -79,15 +79,15 @@ const LandingPage = () => {
               </FadeInUp>
 
               <FadeInUp delay={0.3}>
-                <div className="flex flex-wrap gap-4">
-                  <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
-                    <Link to="/patient/register" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-brand-600 text-white font-bold text-sm shadow-lg shadow-brand-600/25 hover:bg-brand-700 hover:shadow-xl transition-all duration-300">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
+                  <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+                    <Link to="/patient/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-600 text-white font-bold text-sm shadow-lg shadow-brand-600/25 hover:bg-brand-700 hover:shadow-xl transition-all duration-300">
                       Create Your Health ID
                       <FiArrowRight className="w-4 h-4" />
                     </Link>
                   </motion.div>
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Link to="/doctor/login" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border-2 border-surface-200 text-surface-700 font-bold text-sm hover:border-brand-200 hover:bg-brand-50/30 transition-all duration-300">
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+                    <Link to="/doctor/login" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border-2 border-surface-200 text-surface-700 dark:text-surface-700 font-bold text-sm hover:border-brand-200 hover:bg-brand-50/30 transition-all duration-300">
                       Doctor Access
                     </Link>
                   </motion.div>
@@ -95,7 +95,7 @@ const LandingPage = () => {
               </FadeInUp>
 
               <FadeInUp delay={0.4}>
-                <div className="flex items-center gap-8 mt-12">
+                <div className="flex flex-wrap items-center gap-4 sm:gap-8 mt-10 sm:mt-12">
                   {['PIN Protected', 'AI Powered', 'Instant Access'].map((label, i) => (
                     <span key={i} className="flex items-center gap-2 text-sm text-surface-500 font-medium">
                       <span className="w-5 h-5 rounded-lg bg-teal-50 border border-teal-200/60 flex items-center justify-center flex-shrink-0">
@@ -114,7 +114,7 @@ const LandingPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-100/40 to-teal-100/25 rounded-3xl blur-2xl scale-95" />
 
                 <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.4 }}
-                  className="relative bg-surface-0 rounded-3xl border border-surface-200/60 p-7 shadow-elevated">
+                  className="relative bg-surface-0 rounded-3xl border border-surface-200/60 p-5 sm:p-7 shadow-elevated">
 
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/25">
@@ -175,10 +175,10 @@ const LandingPage = () => {
                   </motion.div>
                 </motion.div>
 
-                {/* Floating badges */}
+                {/* Floating badges — hidden on small screens to avoid overflow */}
                 <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.1, duration: 0.6 }}
                   whileHover={{ scale: 1.05 }}
-                  className="absolute -left-5 top-16 bg-surface-0 rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
+                  className="hidden sm:flex absolute -left-5 top-16 bg-surface-0 rounded-2xl px-4 py-3 items-center gap-3 shadow-float border border-surface-200/60">
                   <div className="w-9 h-9 rounded-xl bg-teal-50 border border-teal-200/40 flex items-center justify-center">
                     <FiSmartphone className="w-4 h-4 text-teal-600" />
                   </div>
@@ -190,7 +190,7 @@ const LandingPage = () => {
 
                 <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.3, duration: 0.6 }}
                   whileHover={{ scale: 1.05 }}
-                  className="absolute -right-5 bottom-12 bg-surface-0 rounded-2xl px-4 py-3 flex items-center gap-3 shadow-float border border-surface-200/60">
+                  className="hidden sm:flex absolute -right-5 bottom-12 bg-surface-0 rounded-2xl px-4 py-3 items-center gap-3 shadow-float border border-surface-200/60">
                   <div className="w-9 h-9 rounded-xl bg-brand-50 border border-brand-200/40 flex items-center justify-center">
                     <FiLock className="w-4 h-4 text-brand-600" />
                   </div>
